@@ -8,7 +8,7 @@
 {% block content %}
 
     <div class="container-fluid py-4">
-
+      {% if user.is_authenticated %}
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -16,10 +16,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Money</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Wallet Balance</p>
                     <h5 class="font-weight-bolder mb-0">
-                      $53,000
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      {{ user.loading.wallet }}
+                      <span class="text-success text-sm font-weight-bolder">+50%</span>
                     </h5>
                   </div>
                 </div>
@@ -38,10 +38,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Invested</p>
                     <h5 class="font-weight-bolder mb-0">
-                      2,300
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
+                      {{ user.loading.investment }}
+                    <span class="text-success text-sm font-weight-bolder">+10%</span>
                     </h5>
                   </div>
                 </div>
@@ -60,10 +60,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">New Clients</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Bonus</p>
                     <h5 class="font-weight-bolder mb-0">
-                      +3,462
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      {{ user.loading.bonus }}
+                      <span class="text-info text-sm font-weight-bolder">0%</span>
                     </h5>
                   </div>
                 </div>
@@ -82,10 +82,10 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Deposit</p>
                     <h5 class="font-weight-bolder mb-0">
-                      $103,430
-                      <span class="text-success text-sm font-weight-bolder">+5%</span>
+                      {{ user.loading.deposit }}
+                      <span class="text-success text-sm font-weight-bolder"></span>
                     </h5>
                   </div>
                 </div>
@@ -99,7 +99,8 @@
           </div>
         </div>
       </div>
-
+      {% endif %}
+      
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card">
@@ -107,9 +108,9 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
-                    <p class="mb-1 pt-2 text-bold">Built by developers</p>
-                    <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
-                    <p class="mb-5">From colors, cards, typography to complex elements, you will find the full documentation.</p>
+                    <p class="mb-1 pt-2 text-bold">Welcome back {{ request.user.username }}</p>
+                    <h5 class="font-weight-bolder">3 Block</h5>
+                    <p class="mb-5">The goal is to aid all enthusiasts towards a successful trade and as well educate amateurs from the basis all the way up to a proffessional status.</p>
                     <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
                       Read More
                       <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
@@ -133,7 +134,7 @@
             <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('{{ ASSETS_ROOT }}/img/ivancik.jpg');">
               <span class="mask bg-gradient-dark"></span>
               <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                <h5 class="text-white font-weight-bolder mb-4 pt-2">Work with the rockets</h5>
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">Trade with the experts</h5>
                 <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all about who take the opportunity first.</p>
                 <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
                   Read More
@@ -154,8 +155,8 @@
                   <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
                 </div>
               </div>
-              <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
-              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
+              <h6 class="ms-2 mt-4 mb-0"> New Users </h6>
+              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+43%</span>) than last week </p>
               <div class="container border-radius-lg">
                 <div class="row">
                   <div class="col-3 py-3 ps-0">
@@ -177,7 +178,7 @@
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Users</p>
                     </div>
-                    <h4 class="font-weight-bolder">36K</h4>
+                    <h4 class="font-weight-bolder">376K</h4>
                     <div class="progress w-75">
                       <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -201,9 +202,9 @@
                           </g>
                         </svg>
                       </div>
-                      <p class="text-xs mt-1 mb-0 font-weight-bold">Clicks</p>
+                      <p class="text-xs mt-1 mb-0 font-weight-bold">Daily</p>
                     </div>
-                    <h4 class="font-weight-bolder">2m</h4>
+                    <h4 class="font-weight-bolder">100k+</h4>
                     <div class="progress w-75">
                       <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -225,9 +226,9 @@
                           </g>
                         </svg>
                       </div>
-                      <p class="text-xs mt-1 mb-0 font-weight-bold">Sales</p>
+                        <p class="text-xs mt-1 mb-0 font-weight-bold">GDP</p>
                     </div>
-                    <h4 class="font-weight-bolder">435$</h4>
+                    <h4 class="font-weight-bolder">$27M</h4>
                     <div class="progress w-75">
                       <div class="progress-bar bg-dark w-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -250,9 +251,9 @@
                           </g>
                         </svg>
                       </div>
-                      <p class="text-xs mt-1 mb-0 font-weight-bold">Items</p>
+                      <p class="text-xs mt-1 mb-0 font-weight-bold">Officials</p>
                     </div>
-                    <h4 class="font-weight-bolder">43</h4>
+                    <h4 class="font-weight-bolder">143</h4>
                     <div class="progress w-75">
                       <div class="progress-bar bg-dark w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -268,7 +269,7 @@
               <h6>Sales overview</h6>
               <p class="text-sm">
                 <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
+                <span class="font-weight-bold">14% less</span> in 2021
               </p>
             </div>
             <div class="card-body p-3">
@@ -286,13 +287,13 @@
             <div class="card-header pb-0">
               <div class="row">
                 <div class="col-lg-6 col-7">
-                  <h6>Projects</h6>
+                  <h6>Team Traders</h6>
                   <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <span class="font-weight-bold ms-1">30 done</span> this month
+                    <span class="font-weight-bold ms-1">Active</span> this month
                   </p>
                 </div>
-                <div class="col-lg-6 col-5 my-auto text-end">
+                <!-- <div class="col-lg-6 col-5 my-auto text-end">
                   <div class="dropdown float-lg-end pe-4">
                     <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-ellipsis-v text-secondary"></i>
@@ -303,7 +304,7 @@
                       <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
                     </ul>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -311,8 +312,8 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Members</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Organisations</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Collaborators</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
                     </tr>
@@ -325,7 +326,7 @@
                             <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Soft UI XD Version</h6>
+                            <h6 class="mb-0 text-sm">Adobe XD</h6>
                           </div>
                         </div>
                       </td>
@@ -346,7 +347,7 @@
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $14,000 </span>
+                        <span class="text-xs font-weight-bold"> $740,000 </span>
                       </td>
                       <td class="align-middle">
                         <div class="progress-wrapper w-75 mx-auto">
@@ -368,7 +369,7 @@
                             <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Add Progress Track</h6>
+                            <h6 class="mb-0 text-sm">Addidas Finance</h6>
                           </div>
                         </div>
                       </td>
@@ -383,7 +384,7 @@
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $3,000 </span>
+                        <span class="text-xs font-weight-bold"> $300,000 </span>
                       </td>
                       <td class="align-middle">
                         <div class="progress-wrapper w-75 mx-auto">
@@ -405,22 +406,25 @@
                             <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
+                            <h6 class="mb-0 text-sm">Xin wei huan</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sun wey">
                             <img src="{{ ASSETS_ROOT }}/img/team-3.jpg" alt="team8">
                           </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ling yemen">
+                            <img src="{{ ASSETS_ROOT }}/img/team-3.jpg" alt="team3">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Chi lei Doris">
                             <img src="{{ ASSETS_ROOT }}/img/team-1.jpg" alt="team9">
                           </a>
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> Not set </span>
+                        <span class="text-xs font-weight-bold"> $1,040,000 </span>
                       </td>
                       <td class="align-middle">
                         <div class="progress-wrapper w-75 mx-auto">
@@ -442,34 +446,34 @@
                             <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
+                            <h6 class="mb-0 text-sm">Spotify</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Richard Lake">
                             <img src="{{ ASSETS_ROOT }}/img/team-4.jpg" alt="user1">
                           </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Suzzy West">
                             <img src="{{ ASSETS_ROOT }}/img/team-3.jpg" alt="user2">
                           </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="James Freetown">
                             <img src="{{ ASSETS_ROOT }}/img/team-4.jpg" alt="user3">
                           </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Finn West">
                             <img src="{{ ASSETS_ROOT }}/img/team-1.jpg" alt="user4">
                           </a>
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $20,500 </span>
+                        <span class="text-xs font-weight-bold"> $1,400,500 </span>
                       </td>
                       <td class="align-middle">
                         <div class="progress-wrapper w-75 mx-auto">
                           <div class="progress-info">
                             <div class="progress-percentage">
-                              <span class="text-xs font-weight-bold">100%</span>
+                              <span class="text-xs font-weight-bold">99%</span>
                             </div>
                           </div>
                           <div class="progress">
@@ -485,19 +489,22 @@
                             <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
+                            <h6 class="mb-0 text-sm">Van Bauch</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Walryke Chadler">
                             <img src="{{ ASSETS_ROOT }}/img/team-4.jpg" alt="user5">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nickel Rein">
+                            <img src="{{ ASSETS_ROOT }}/img/team-3.jpg" alt="team3">
                           </a>
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $500 </span>
+                        <span class="text-xs font-weight-bold"> $84,000 </span>
                       </td>
                       <td class="align-middle">
                         <div class="progress-wrapper w-75 mx-auto">
@@ -519,22 +526,22 @@
                             <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
+                            <h6 class="mb-0 text-sm">Inlearn</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="avatar-group mt-2">
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bob Trufford">
                             <img src="{{ ASSETS_ROOT }}/img/team-1.jpg" alt="user6">
                           </a>
-                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rail Monroe">
                             <img src="{{ ASSETS_ROOT }}/img/team-4.jpg" alt="user7">
                           </a>
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> $2,000 </span>
+                        <span class="text-xs font-weight-bold"> $200,000 </span>
                       </td>
                       <td class="align-middle">
                         <div class="progress-wrapper w-75 mx-auto">
@@ -555,6 +562,9 @@
             </div>
           </div>
         </div>
+
+        <!-- Trial -->
+      {% if user.is_authenticated %}
         <div class="col-lg-4 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0">
@@ -625,6 +635,27 @@
           </div>
         </div>
       </div>
+      {% else %}
+      <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+      <div class="card card-plain pb-7">
+        <div class="card-header pb-0 text-left bg-transparent"> 
+          <h3 class="font-weight-bolder text-info text-center text-gradient">
+            Enter Your Account
+          </h3>
+        </div>
+        <div class="card-body pb-7">
+          <div class="text-center py-2">
+            <a href="{% url 'register' %}" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign UP</a>
+          </div>
+          <div class="text-center py-2">
+            <a href="{% url 'login' %}" class="btn bg-gradient-primary w-100 mt-4 mb-0">Sign In</a>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      {% endif %}
+      
 
       {% include "includes/footer.html" %}
 
@@ -644,7 +675,7 @@
       data: {
         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
-          label: "Sales",
+          label: "Active",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -723,7 +754,7 @@
       data: {
         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
-            label: "Mobile apps",
+            label: "Direct",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 0,
@@ -736,7 +767,7 @@
 
           },
           {
-            label: "Websites",
+            label: "Indirect",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 0,
