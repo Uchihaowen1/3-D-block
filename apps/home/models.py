@@ -1,8 +1,3 @@
-
-from datetime import datetime
-from re import S
-from sre_constants import SUCCESS
-from turtle import fd, pd
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
