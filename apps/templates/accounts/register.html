@@ -1,4 +1,4 @@
-{% extends 'layouts/base-fullscreen.html' %}
+{% extends 'layouts/base.html' %}
 
 {% block title %} Sign UP {% endblock title %}
 
@@ -10,8 +10,6 @@
   <div class="container position-sticky z-index-sticky top-1">
     <div class="row">
       <div class="col-12">
-
-        {% include "includes/navigation-fullscreen.html" %}
 
       </div>
     </div>
@@ -69,6 +67,18 @@
 
                       {% csrf_token %}
 
+                      <label>First Name</label>
+                      <div class="mb-3">
+                        {{ form.first_name }}
+                      </div>
+                      <span class="text-danger">{{ form.first_name.errors }}</span>
+
+                      <label>Lasr Name</label>
+                      <div class="mb-3">
+                        {{ form.last_name }}
+                      </div>
+                      <span class="text-danger">{{ form.last_name.errors }}</span>
+
                       <label>Username</label>
                       <div class="mb-3">
                         {{ form.username }}
@@ -94,7 +104,7 @@
                       <span class="text-danger">{{ form.password2.errors }}</span>                      
 
                       <div class="text-center">
-                        <button type="submit" name="register" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign UP</button>
+                        <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign UP</button>
                       </div>
 
                       <div class="text-center">
@@ -102,6 +112,7 @@
                       </div>                
 
                   </form>
+                  <!-- <h6 class="my-3 text-secondary">Already have an account ? <span class=""><a class="text-secondary" href="{% url 'login' %}">Login Here</a></span> </h6> -->
 
                 {% endif %}
 
@@ -112,7 +123,7 @@
       </div>
     </section>
 
-    {% include "includes/footer-fullscreen.html" %}
+    {% include "includes/footer.html" %}
 
   </main>
 
