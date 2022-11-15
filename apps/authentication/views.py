@@ -46,7 +46,7 @@ def register_user(request):
 
             msg = 'Account created successfully.'
             success = True
-
+            login(request, user)
             return redirect("/")
 
         else:
