@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="{{ ASSETS_ROOT }}/img/apple-icon.png">
   <link rel="icon" type="image/png" href="{{ ASSETS_ROOT }}/img/favicon.png">
 
@@ -28,10 +28,10 @@
   {% block stylesheets %}{% endblock stylesheets %}  
 
 </head>
-<body class="position-absolute top-0 g-sidenav-show bg-gray-100">
-  
+<body class=" g-sidenav-show bg-gray-100">
+  <header class= " position-absolute top-0 d-block mx-auto">
   {% include "includes/sidebar.html" %} 
-
+  </header>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <div class="mb-5">
     {% include "includes/navigation.html" %} 
