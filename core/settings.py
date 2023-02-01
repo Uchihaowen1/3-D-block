@@ -94,13 +94,13 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql',
 
-         'NAME': 'da2taptrf736sd',
+         'NAME': 'globalfinance',
 
-         'USER': 'nqqnhbrqawicst',
+         'USER': 'gfinance1198',
 
-         'PASSWORD': '6c91fab2ca320bf3e1c15c929ecaf5e76761a0881c5fe8367947d1194045b9f2',
+         'PASSWORD': 'Gfinance_1198',
 
-         'HOST': 'ec2-18-209-78-11.compute-1.amazonaws.com',
+         'HOST': 'gfinance.ccbvzu3xhbfb.us-east-1.rds.amazonaws.com',
 
         'PORT': '5432',
 
