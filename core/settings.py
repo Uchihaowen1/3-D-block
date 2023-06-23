@@ -18,7 +18,7 @@ SECRET_KEY = 'SECRET_KEYS#perS3crEt_007'
 ASSETS_ROOT = os.path.join('ASSETS_ROOT', '/static/assets') 
 
 # load production server from .env
-ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1','https://3block.up.railway.app/', 'https://3block.up.railway.app','3block.up.railway.app']
+ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1','https://3block.up.railway.app/', 'https://3block.up.railway.app','3block.up.railway.app','3-blocks.up.railway.app',]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://']
 
 # Application definition
