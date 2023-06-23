@@ -8,9 +8,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 
-from core.settings import GITHUB_AUTH
-
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     form = LoginForm(request.POST or None)
 
     msg = None
@@ -23,13 +23,14 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect("home")
             else:
                 msg = 'Invalid credentials'
+                return redirect("login")
         else:
             msg = 'Error validating the form'
-
-    return render(request, "accounts/login.html", {"form": form, "msg": msg, "GITHUB_AUTH": GITHUB_AUTH})
+            return redirect("login")
+    return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
 def register_user(request):

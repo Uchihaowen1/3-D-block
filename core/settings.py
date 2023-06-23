@@ -3,32 +3,23 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-import os, environ
+import os
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, True)
-)
+DEBUG=(bool, True)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='S#perS3crEt_007')
+SECRET_KEY = 'SECRET_KEYS#perS3crEt_007'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
 
-# Assets Management
-ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
+ASSETS_ROOT = os.path.join('ASSETS_ROOT', '/static/assets') 
 
 # load production server from .env
-ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1','https://3block.up.railway.app/', 'https://3block.up.railway.app','3block.up.railway.app',               env('SERVER', default='127.0.0.1'), 'bitcorenet.herokuapp.com' ]
-CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1') ]
+ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1','https://3block.up.railway.app/', 'https://3block.up.railway.app','3block.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://']
 
 # Application definition
 
@@ -41,15 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps',
     'apps.home',
-    'apps.contents',                                    # Enable the inner home (home)
-    'allauth',                                      # OAuth new
-    'allauth.account',                              # OAuth new
-    'allauth.socialaccount',                        # OAuth new 
-    'allauth.socialaccount.providers.github',       # OAuth new 
-    "sslserver",                                    
-    'rest_framework',
-    'rest_framework.authtoken',
-    'apps.dyn_datatables',
+    'apps.contents',
 ]
 
 MIDDLEWARE = [
@@ -87,28 +70,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
-       'default': {
-
-        'ENGINE': 'django.db.backends.postgresql',
-
-         'NAME': 'globalfinance',
-
-         'USER': 'gfinance1198',
-
-         'PASSWORD': 'Gfinance_1198',
-
-         'HOST': 'gfinance.ccbvzu3xhbfb.us-east-1.rds.amazonaws.com',
-
-        'PORT': '5432',
-
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(CORE_DIR, 'db.sqlite3',)
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -155,53 +123,3 @@ STATICFILES_DIRS = (
 # This is used by the API Generator
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#############################################################
-# OAuth settings 
-
-GITHUB_ID     = os.getenv('GITHUB_ID', None)
-GITHUB_SECRET = os.getenv('GITHUB_SECRET', None)
-GITHUB_AUTH   = GITHUB_SECRET is not None and GITHUB_ID is not None
-
-AUTHENTICATION_BACKENDS = (
-    "core.custom-auth-backend.CustomBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-
-SITE_ID                    = 1 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
-SOCIALACCOUNT_PROVIDERS = {}
-
-if GITHUB_AUTH:
-    SOCIALACCOUNT_PROVIDERS['github'] = {
-        'APP': {
-            'client_id': GITHUB_ID,
-            'secret': GITHUB_SECRET,
-            'key': ''
-        }
-    }
-
-#############################################################
-# API Generator
-
-API_GENERATOR = {
-    # Register models below
-    'books': "Book",
-}
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication'
-    ],
-}
-
-#############################################################
-# DYNAMIC DATA Tables
-
-DYNAMIC_DATATB = {
-    'endpoint': 'Model', # don't change this line
-
-    # Register models below
-    'books': "Book",     
-}
